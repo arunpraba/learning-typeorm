@@ -18,6 +18,8 @@ type User {
   lastLat: Float!
   lastLng: Float!
   lastOrientation: Float
+  chat: Chat
+  messages: [Message]
 }
 
 type Query {

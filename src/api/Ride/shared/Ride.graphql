@@ -1,0 +1,15 @@
+type Place {
+  id: Int!
+  status: String!
+  pickUpAddress: String!
+  pickUpLat: Float!
+  pickUpLng: Float!
+  dropOffAddress: String!
+  dropOffLat: Float!
+  dropOffLng: Float!
+  price: Float!
+  distance: Float!
+  duration: Float!
+  createdAt: String!
+  updatedAt: String!
+}

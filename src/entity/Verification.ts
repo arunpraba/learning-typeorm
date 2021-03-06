@@ -5,8 +5,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  BeforeInsert,
 } from 'typeorm'
-import { VerificationTarget } from 'types'
+import { VerificationTarget } from '../api-types/types'
 
 @Entity({ name: 'verification' })
 export class Verification extends BaseEntity {
@@ -30,4 +31,14 @@ export class Verification extends BaseEntity {
 
   @UpdateDateColumn()
   updatedAt: string
+
+  @BeforeInsert()
+  createKey(): void {
+    if (
+      this.target === VerificationTarget.EMAIL ||
+      this.target === VerificationTarget.PHONE
+    ) {
+      this.key = Math.floor(Math.random() * 100000).toString()
+    }
+  }
 }

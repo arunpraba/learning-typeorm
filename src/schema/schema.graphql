@@ -1,4 +1,37 @@
 type Query {
   sayBye: String!
   sayHello(name: String!): String!
+  user: User
+}
+
+type User {
+  id: Int!
+  email: String
+  firstName: String!
+  lastName: String!
+  age: Int
+  password: String
+  verifiedEmail: Boolean!
+  phoneNumber: String
+  VerifiedPhoneNumber: Boolean
+  profilePhoto: String
+  createdAt: String!
+  updatedAt: String
+  fullName: String
+  isDriving: Boolean!
+  isRiding: Boolean!
+  isTaken: Boolean!
+  lastLat: Float!
+  lastLng: Float!
+  lastOrientation: Float
+}
+
+type Verification {
+  id: Int!
+  target: String!
+  payload: String!
+  key: String!
+  used: Boolean!
+  createdAt: String!
+  updatedAt: String!
 }
