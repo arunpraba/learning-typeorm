@@ -5,8 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BaseEntity,
+  BeforeInsert,
+  BeforeUpdate,
 } from 'typeorm'
+import bcrypt from 'bcrypt'
 
+const BCRYPT_ROUNDS = 1
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -62,6 +66,23 @@ export class User extends BaseEntity {
 
   @Column({ type: 'numeric', default: 0 })
   lastOrientation: number
+
+  private hashPassword(password: string): Promise<string> {
+    return bcrypt.hash(password, BCRYPT_ROUNDS)
+  }
+
+  public comparePassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password)
+  }
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async savePassword(): Promise<void> {
+    if (this.password) {
+      const hashedPassword = await this.hashPassword(this.password)
+      this.password = hashedPassword
+    }
+  }
 
   get fullName() {
     return `${this.firstName} ${this.lastName}`

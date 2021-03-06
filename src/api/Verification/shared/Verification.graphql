@@ -1,0 +1,9 @@
+type Verification {
+  id: Int!
+  target: String! # email or password
+  payload: String!
+  key: String!
+  used: Boolean!
+  createdAt: String!
+  updatedAt: String!
+}
