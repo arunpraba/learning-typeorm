@@ -2,10 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
 import { RideStatus } from '../api-types/types'
+import { User } from './User'
 
 @Entity({ name: 'rides' })
 export class Ride {
@@ -53,4 +55,10 @@ export class Ride {
 
   @UpdateDateColumn()
   updatedAt: string
+
+  @ManyToMany((type) => User, (user) => user.ridesAsPassenger)
+  passenger: User
+
+  @ManyToMany((type) => User, (user) => user.ridesAsDriver)
+  driver: User
 }

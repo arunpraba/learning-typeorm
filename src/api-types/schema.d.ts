@@ -1,11 +1,5 @@
 export interface Query {
-  sayBye: string
-  sayHello: string
   user: User | null
-}
-
-export interface SayHelloQueryArgs {
-  name: string
 }
 
 export interface User {
@@ -28,6 +22,46 @@ export interface User {
   lastLat: number
   lastLng: number
   lastOrientation: number | null
+  chat: Chat | null
+  messages: Array<Message> | null
+}
+
+export interface Chat {
+  id: number
+  messages: Array<Message> | null
+  participants: Array<User> | null
+  createdAt: string
+  updatedAt: string
+}
+
+export interface Message {
+  id: number
+  text: string
+  chat: Chat
+  user: User
+  createdAt: string
+  updatedAt: string
+}
+
+export interface Place {
+  id: number
+  name: string
+  lat: number
+  lng: number
+  address: string
+  isFav: boolean | null
+  createdAt: string
+  updatedAt: string
+  status: string
+  pickUpAddress: string
+  pickUpLat: number
+  pickUpLng: number
+  dropOffAddress: string
+  dropOffLat: number
+  dropOffLng: number
+  price: number
+  distance: number
+  duration: number
 }
 
 export interface Verification {

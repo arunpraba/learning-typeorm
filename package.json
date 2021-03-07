@@ -39,6 +39,6 @@
     "watch": "nodemon --exec ts-node src/index.ts -e ts,graphql",
     "build": "ts-node src/index.ts",
     "generate-graphql": "gql-merge --out-file ./src/schema/schema.graphql ./src/api/**/*.graphql",
-    "generate-types": "npm run generate-graphql && graphql-to-typescript ./src/schema/schema.graphql ./src/types/schema.d.ts"
+    "generate-types": "npm run generate-graphql && graphql-to-typescript ./src/schema/schema.graphql ./src/api-types/schema.d.ts"
   }
 }

@@ -1,7 +1,42 @@
-type Query {
-  sayBye: String!
-  sayHello(name: String!): String!
-  user: User
+type Chat {
+  id: Int!
+  messages: [Message]
+  participants: [User]
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Message {
+  id: Int!
+  text: String!
+  chat: Chat!
+  user: User!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Place {
+  id: Int!
+  name: String!
+  lat: Float!
+  lng: Float!
+  address: String!
+  isFav: Boolean
+  createdAt: String!
+  updatedAt: String!
+  id: Int!
+  status: String!
+  pickUpAddress: String!
+  pickUpLat: Float!
+  pickUpLng: Float!
+  dropOffAddress: String!
+  dropOffLat: Float!
+  dropOffLng: Float!
+  price: Float!
+  distance: Float!
+  duration: Float!
+  createdAt: String!
+  updatedAt: String!
 }
 
 type User {
@@ -24,6 +59,12 @@ type User {
   lastLat: Float!
   lastLng: Float!
   lastOrientation: Float
+  chat: Chat
+  messages: [Message]
+}
+
+type Query {
+  user: User
 }
 
 type Verification {

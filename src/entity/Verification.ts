@@ -6,8 +6,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BeforeInsert,
+  ManyToMany,
 } from 'typeorm'
 import { VerificationTarget } from '../api-types/types'
+import { User } from './User'
 
 @Entity({ name: 'verification' })
 export class Verification extends BaseEntity {
@@ -31,6 +33,9 @@ export class Verification extends BaseEntity {
 
   @UpdateDateColumn()
   updatedAt: string
+
+  @ManyToMany((type) => User, (user) => user.verifications)
+  user: User
 
   @BeforeInsert()
   createKey(): void {

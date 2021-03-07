@@ -15,10 +15,10 @@ export class Chat extends BaseEntity {
   id: number
 
   @OneToMany((type) => Message, (message) => message.chat)
-  messages: Message[]
+  messages: Array<Message>
 
   @OneToMany((type) => User, (user) => user.chat)
-  participants: User[]
+  participants: Array<User>
 
   @CreateDateColumn()
   createdAt: string
